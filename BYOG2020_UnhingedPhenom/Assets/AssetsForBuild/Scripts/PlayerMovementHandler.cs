@@ -45,6 +45,11 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             _rigidBody.AddForce(new Vector3(0, m_JumpForce), ForceMode.Impulse);
         }
+
+        if (_playerInput.isShooting)
+        {
+            Debug.LogError("SHOOTING");
+        }
     }
 
     private bool IsGrounded()

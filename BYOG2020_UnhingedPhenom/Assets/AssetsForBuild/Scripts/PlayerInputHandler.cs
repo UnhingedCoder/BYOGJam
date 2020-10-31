@@ -10,6 +10,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool Jump { get; private set; }
 
+    public bool isShooting { get; private set; }
+
     private float _horizontal;
     private float _vertical;
 
@@ -23,5 +25,7 @@ public class PlayerInputHandler : MonoBehaviour
         MousePosition = Input.mousePosition;
 
         Jump = Input.GetButtonDown("Jump");
+
+        isShooting = Input.GetButtonDown("Fire1");
     }
 }
