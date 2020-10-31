@@ -43,12 +43,19 @@ public class PlayerMovementHandler : MonoBehaviour
 
         if (IsGrounded() && _playerInput.Jump)
         {
+            this.gameObject.transform.SetParent(null);
             _rigidBody.AddForce(new Vector3(0, m_JumpForce), ForceMode.Impulse);
+            
         }
 
         if (_playerInput.isShooting)
         {
             Debug.LogError("SHOOTING");
+        }
+
+        if (_playerInput.slowTime)
+        {
+            Debug.LogError("SLOW");
         }
     }
 
@@ -85,4 +92,13 @@ public class PlayerMovementHandler : MonoBehaviour
         transform.position = targetPosition;
         return targetVector;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Floor")
+        {
+            this.gameObject.transform.SetParent(collision.gameObject.transform);
+        }
+    }
+
 }

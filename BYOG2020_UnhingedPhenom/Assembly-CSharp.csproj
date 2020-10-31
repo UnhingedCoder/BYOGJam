@@ -62,6 +62,7 @@
     <Compile Include="Assets\AssetsForBuild\Scripts\BulletHandler.cs" />
     <Compile Include="Assets\AssetsForBuild\Scripts\Patrol.cs" />
     <Compile Include="Assets\AssetsForBuild\Scripts\WorldManager.cs" />
+    <Compile Include="Assets\AssetsForBuild\Scripts\RotateBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
