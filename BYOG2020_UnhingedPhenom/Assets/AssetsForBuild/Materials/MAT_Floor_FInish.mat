@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Floor
+  m_Name: MAT_Floor_FInish
   m_Shader: {fileID: -6465566751694194690, guid: 28b062c4a4710e04aab872f0672f40e8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
