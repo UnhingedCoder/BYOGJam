@@ -6,8 +6,13 @@ public class WorldManager : MonoBehaviour
 {
     private static WorldManager instance = null;
 
-    public bool InMotion { get; private set; }
+    public GameObject spawnPosition;
+    public bool WorldInMotion { get; private set; }
+    public bool SlowWorld { get; private set; }
+
     public PlayerInputHandler playerInputHandler_;
+
+    float timeSlowStarted;
 
     // Game Instance Singleton
     public static WorldManager Instance
@@ -34,8 +39,30 @@ public class WorldManager : MonoBehaviour
     {
         if (playerInputHandler_.Jump)
         {
-            InMotion = !InMotion;
-            Debug.LogError(InMotion);
+            if (!SlowWorld)
+            {
+                WorldInMotion = !WorldInMotion;
+            }
+            Debug.LogError(WorldInMotion);
         }
+
+        if (playerInputHandler_.slowTime && WorldInMotion && !SlowWorld)
+        {
+            WorldInMotion = false;
+            SlowWorld = true;
+            timeSlowStarted = Time.realtimeSinceStartup;
+            Debug.LogError("SLOWING TIME");
+        }
+
+        if (SlowWorld)
+        {
+            if(Time.realtimeSinceStartup - timeSlowStarted > 1)
+            {
+                SlowWorld = false;
+                WorldInMotion = true;
+            }
+        }
+
+
     }
 }

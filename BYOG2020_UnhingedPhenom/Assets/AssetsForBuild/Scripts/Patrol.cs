@@ -18,7 +18,7 @@ public class Patrol : MonoBehaviour
 
     private void Update()
     {
-        if (WorldManager.Instance.InMotion)
+        if (WorldManager.Instance.WorldInMotion)
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, moveTo.position, step);
