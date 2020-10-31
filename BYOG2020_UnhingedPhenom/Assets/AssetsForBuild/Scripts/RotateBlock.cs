@@ -20,7 +20,7 @@ public class RotateBlock : MonoBehaviour
             transform.Rotate(Vector3.up * speed * Time.deltaTime);
         }
 
-        if(Quaternion.Angle(transform.rotation, originalRotation) < 0.2f 
+        if(WorldManager.Instance.WorldInMotion && Quaternion.Angle(transform.rotation, originalRotation) < 0.2f 
                 || Quaternion.Angle(transform.rotation, originalRotation) > 90f)
         {
             speed = -speed;

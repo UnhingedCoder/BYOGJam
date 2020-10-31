@@ -99,6 +99,11 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             this.gameObject.transform.SetParent(collision.gameObject.transform);
         }
+
+        if (collision.gameObject.tag == "ResetCollider")
+        {
+            this.gameObject.transform.position = WorldManager.Instance.spawnPosition.transform.position;
+        }
     }
 
 }

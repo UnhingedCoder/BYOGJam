@@ -6,6 +6,7 @@ public class WorldManager : MonoBehaviour
 {
     private static WorldManager instance = null;
 
+    public GameObject spawnPosition;
     public bool WorldInMotion { get; private set; }
     public bool SlowWorld { get; private set; }
 
@@ -38,7 +39,10 @@ public class WorldManager : MonoBehaviour
     {
         if (playerInputHandler_.Jump)
         {
-            WorldInMotion = !WorldInMotion;
+            if (!SlowWorld)
+            {
+                WorldInMotion = !WorldInMotion;
+            }
             Debug.LogError(WorldInMotion);
         }
 
