@@ -14,6 +14,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     [SerializeField] private bool _rotateTowardsMouse;
 
+
     private Collider _collider;
     private Rigidbody _rigidBody;
 
@@ -45,11 +46,6 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             _rigidBody.AddForce(new Vector3(0, m_JumpForce), ForceMode.Impulse);
         }
-
-        if (_playerInput.isShooting)
-        {
-            Debug.LogError("SHOOTING");
-        }
     }
 
     private bool IsGrounded()
@@ -57,10 +53,15 @@ public class PlayerMovementHandler : MonoBehaviour
         return Physics.CheckCapsule(_collider.bounds.center, new Vector3(_collider.bounds.center.x, _collider.bounds.min.y - 0.1f, _collider.bounds.center.z), 0.18f);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Ray ray = _camera.ScreenPointToRay(_playerInput.MousePosition);
+        Gizmos.DrawRay(ray);
+    }
+
     private void RotateFromMouseVector()
     {
         Ray ray = _camera.ScreenPointToRay(_playerInput.MousePosition);
-
         if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f))
         {
             var target = hitInfo.point;
