@@ -8,6 +8,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public Vector3 MousePosition { get; private set; }
 
+    public bool Jump { get; private set; }
+
     private float _horizontal;
     private float _vertical;
 
@@ -19,5 +21,7 @@ public class PlayerInputHandler : MonoBehaviour
         InputVector = new Vector2(_horizontal, _vertical);
 
         MousePosition = Input.mousePosition;
+
+        Jump = Input.GetButtonDown("Jump");
     }
 }

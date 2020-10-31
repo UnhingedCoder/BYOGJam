@@ -10,15 +10,21 @@ public class PlayerMovementHandler : MonoBehaviour
 
     [SerializeField] private float m_MovementSpeed;
     [SerializeField] private float m_RotationSpeed;
+    [SerializeField] private float m_JumpForce;
 
     [SerializeField] private bool _rotateTowardsMouse;
-    
+
+    private Collider _collider;
+    private Rigidbody _rigidBody;
+
     private PlayerInputHandler _playerInput;
 
 
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInputHandler>();
+        _collider = GetComponent<Collider>();
+        _rigidBody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -34,6 +40,16 @@ public class PlayerMovementHandler : MonoBehaviour
         {
             RotateFromMouseVector();
         }
+
+        if (IsGrounded() && _playerInput.Jump)
+        {
+            _rigidBody.AddForce(new Vector3(0, m_JumpForce), ForceMode.Impulse);
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics.CheckCapsule(_collider.bounds.center, new Vector3(_collider.bounds.center.x, _collider.bounds.min.y - 0.1f, _collider.bounds.center.z), 0.18f);
     }
 
     private void RotateFromMouseVector()
